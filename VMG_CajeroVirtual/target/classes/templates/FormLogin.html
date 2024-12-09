@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Inicio Sesion</title>
+</head>
+<body>
+	<h1>Inicio Sesion</h1>
+	<h3>Hola:  <span th:text="${session.cuenta == null ? 'Invitado' : session.cuenta.idCuenta}"></span></h3>
+	<h3>Mensaje:  <span th:text="${mensaje}"></span></h3>
+	<form th:action="@{/login}" method="post">
+		<p><input type="text" placeholder="id cuenta" name="numeroCuenta"></p>
+
+		<p><input type="submit" value="Enviar"></p>
+	</form>
+	
+	
+</body>
+</html>
+
+

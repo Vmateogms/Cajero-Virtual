@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movimientos</title>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+	<h3>Saldo Actual: <span th:text="${saldo}"></span></h3>
+    <h1>Movimientos</h1>
+    <table border="1">
+    <thead>
+    <!-- encabezados de la tabla -->
+        <tr>
+            <th>Fecha: </th>
+            <th>Operacion: </th>
+            <th>Cantidad: </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="movimiento : ${movimientos}">
+        
+            <td th:text="${movimiento.fecha}"></td>
+            <td th:text="${movimiento.operacion}"></td>
+            <td th:text="${movimiento.cantidad}"></td>
+
+            
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    
+     <!-- formulario para ingresar dinero -->
+        <form th:action="@{/Ingresar}" method="post" class="mb-3">
+        <label for="cantidadIngresar">Cantidad a ingresar:</label>
+        <input type="number" id="cantidadIngresar" name="cantidad" step="0.01" required>
+        <button type="submit" class="btn btn-success">Ingresar</button>
+    </form>
+    
+    <!-- formulario para extraer dinero -->
+    <form th:action="@{/extraer}" method="post">
+        <label for="cantidadExtraer">Cantidad a extraer:</label>
+        <input type="number" id="cantidadExtraer" name="cantidad" step="0.01" required>
+        <button type="submit" class="btn btn-danger">Extraer</button>
+    </form>
+     <!-- formulario para transferir dinero -->
+     <form th:action="@{/transferir}" method="post">
+     	<label for="cuentaDestinoId">Cuenta de Destino</label>
+     	<input type="number" id="cuentaDestinoId" name="cuentaDestinoId" required>
+        <label for="cantidadTransferir" >Cantidad a transferir:</label>
+        <input type="number" id="cantidadTransferir" name="cantidad" step="0.01" required>
+        <button type="submit" class="btn btn-info">Transferir</button>
+    </form>
+    
+    <p>
+       <a class="button" th:href="@{/}" style="text-decoration: none; color: white; background-color: #4CBF70; padding: 5px 20px; border-radius: 5px;">Volver</a>
+    </p>
+</body>
+</html>
